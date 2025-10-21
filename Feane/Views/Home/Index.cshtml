@@ -106,7 +106,43 @@
             </nav>
         </div>
     </header>
+
+    <!-- Login section -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Вход</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="loginForm" method="post" action="@Url.Action("Login", "Account")">
+                    <div class="modal-body">
+                        <div id="loginError" class="alert alert-danger" style="display:none;"></div>
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" name="Email" placeholder="you@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Пароль</label>
+                            <input type="password" class="form-control" id="loginPassword" name="Password" placeholder="Пароль" required />
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="loginRemember" name="RememberMe" />
+                            <label class="form-check-label" for="loginRemember">Запомнить меня</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-primary">Войти</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- end header section -->
+
     <!-- slider section -->
     <section class="slider_section ">
         <div id="customCarousel1" class="carousel slide" data-ride="carousel">
@@ -1202,3 +1238,44 @@
 </section>
 
 <!-- end client section -->
+
+
+<script>
+    (function () {
+        // Открыть модальное окно при клике на .user_link
+        document.addEventListener('click', function (e) {
+            var target = e.target;
+            // поиск по классу как на элементе, так и внутри иконки
+            if (target.closest && target.closest('.user_link')) {
+                e.preventDefault();
+                // jQuery + Bootstrap 4 ожидают .modal('show')
+                if (window.jQuery && typeof jQuery('#loginModal').modal === 'function') {
+                    jQuery('#loginModal').modal('show');
+                } else {
+                    // fallback: добавить класс для показа, если Bootstrap недоступен
+                    var m = document.getElementById('loginModal');
+                    if (m) m.style.display = 'block';
+                }
+            }
+        }, false);
+
+        // Валидация формы перед отправкой
+        var loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function (e) {
+                var email = document.getElementById('loginEmail').value.trim();
+                var pass = document.getElementById('loginPassword').value;
+                var err = document.getElementById('loginError');
+                err.style.display = 'none';
+                if (!email || !pass) {
+                    e.preventDefault();
+                    err.textContent = 'Введите email и пароль.';
+                    err.style.display = 'block';
+                    return false;
+                }
+                // Если требуется отправка через AJAX — реализуйте здесь.
+                // По умолчанию форма отправится на action формы.
+            }, false);
+        }
+    })();
+</script>
