@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="OurMenu"><value>Our Menu</value></data>
+  <data name="All"><value>All</value></data>
+  <data name="Burger"><value>Burger</value></data>
+  <data name="Pizza"><value>Pizza</value></data>
+  <data name="Pasta"><value>Pasta</value></data>
+  <data name="Fries"><value>Fries</value></data>
+  <data name="DeliciousPizza"><value>Delicious Pizza</value></data>
+  <data name="PizzaDesc"><value>Veniam debitis quaerat officiis quasi cupiditate quo.</value></data>
+  <data name="ViewMore"><value>View More</value></data>
+</root>

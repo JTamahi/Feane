@@ -1,11 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
+    ViewData["Title"] = Localizer["About"];
 }
 
 <section class="sub_page">
-			
 	<div class="hero_area">
 		<div class="bg-box">
 			<img src="@(Url.Content("~/images/hero-bg.jpg"))" alt="">
@@ -30,17 +30,14 @@
 					<div class="detail-box">
 						<div class="heading_container">
 							<h2>
-								We Are Feane
+								@Localizer["WeAreFeane"]
 							</h2>
 						</div>
 						<p>
-							There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-							in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-							are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
-							the middle of text. All
+							@Localizer["AboutParagraph"]
 						</p>
-						<a href="">
-							Read More
+						<a href="#">
+							@Localizer["ReadMore"]
 						</a>
 					</div>
 				</div>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="FastFoodHeading"><value>Fast Food Restaurant</value></data>
+  <data name="FastFoodText"><value>Our restaurant offers juicy grilled burgers, crispy fries, and refreshing milkshakes.</value></data>
+  <data name="FastFoodText2"><value>Welcome to the place where your new favorite burger is made.</value></data>
+  <data name="OrderNow"><value>Order Now</value></data>
+  <data name="TastyThursdays"><value>Tasty Thursdays</value></data>
+  <data name="PizzaDays"><value>Pizza Days</value></data>
+  <data name="Off"><value>Off</value></data>
+</root>

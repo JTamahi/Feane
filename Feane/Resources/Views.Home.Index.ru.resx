@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="FastFoodHeading"><value>Fast Food Ресторан</value></data>
+  <data name="FastFoodText"><value>У нас сочные бургеры, хрустящий картофель и освежающие молочные шейки.</value></data>
+  <data name="FastFoodText2"><value>Добро пожаловать в место, где делают ваш новый любимый бургер.</value></data>
+  <data name="OrderNow"><value>Заказать</value></data>
+  <data name="TastyThursdays"><value>Вкусные четверги</value></data>
+  <data name="PizzaDays"><value>Дни пиццы</value></data>
+  <data name="Off"><value>Скидка</value></data>
+</root>
