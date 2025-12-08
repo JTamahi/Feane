@@ -1,8 +1,7 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Localizer
-
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
-    ViewData["Title"] = Localizer["BookTable"];
 }
 
 <section class="sub_page">
@@ -21,7 +20,7 @@
         <div class="container">
             <div class="heading_container">
                 <h2>
-                    @Localizer["BookATable"]
+                    Book A Table
                 </h2>
             </div>
             <div class="row">
@@ -29,18 +28,18 @@
                     <div class="form_container">
                         <form action="">
                             <div>
-                                <input type="text" class="form-control" placeholder="@Localizer["YourName"]" />
+                                <input type="text" class="form-control" placeholder="Your Name" />
                             </div>
                             <div>
-                                <input type="text" class="form-control" placeholder="@Localizer["PhoneNumber"]" />
+                                <input type="text" class="form-control" placeholder="Phone Number" />
                             </div>
                             <div>
-                                <input type="email" class="form-control" placeholder="@Localizer["YourEmail"]" />
+                                <input type="email" class="form-control" placeholder="Your Email" />
                             </div>
                             <div>
                                 <select class="form-control nice-select wide">
                                     <option value="" disabled selected>
-                                        @Localizer["HowMany"]
+                                        How many persons?
                                     </option>
                                     <option value="">
                                         2
@@ -61,7 +60,7 @@
                             </div>
                             <div class="btn_box">
                                 <button>
-                                    @Localizer["BookNow"]
+                                    Book Now
                                 </button>
                             </div>
                         </form>

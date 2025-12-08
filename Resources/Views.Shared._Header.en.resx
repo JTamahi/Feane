@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <data name="Home" xml:space="preserve"><value>Home</value></data>
-  <data name="Menu" xml:space="preserve"><value>Menu</value></data>
-  <data name="About" xml:space="preserve"><value>About</value></data>
-  <data name="BookTable" xml:space="preserve"><value>Book Table</value></data>
-</root>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <data name="BookATable"><value>Book A Table</value></data>
-  <data name="YourName"><value>Your Name</value></data>
-  <data name="PhoneNumber"><value>Phone Number</value></data>
-  <data name="YourEmail"><value>Your Email</value></data>
-  <data name="HowMany"><value>How many persons?</value></data>
-  <data name="BookNow"><value>Book Now</value></data>
-</root>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <data name="BookATable"><value>Забронировать стол</value></data>
-  <data name="YourName"><value>Ваше имя</value></data>
-  <data name="PhoneNumber"><value>Телефон</value></data>
-  <data name="YourEmail"><value>Эл. почта</value></data>
-  <data name="HowMany"><value>Сколько человек?</value></data>
-  <data name="BookNow"><value>Бронировать</value></data>
-</root>
