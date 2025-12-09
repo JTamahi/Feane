@@ -1,0 +1,55 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Login";
+    var returnUrl = ViewData["ReturnUrl"] as string ?? Url.Action("Index", "Home");
+}
+
+<section class="sub_page">
+    <div class="hero_area">
+        <div class="bg-box">
+            <img src="@(Url.Content("~/images/hero-bg.jpg"))" alt="">
+        </div>
+        <!-- header section starts -->
+        @Html.Partial("_Header")
+        <!-- end header section -->
+    </div>
+
+    <section class="book_section layout_padding" style="padding-top:40px;">
+        <div class="container">
+            <div class="heading_container">
+                <h2>Sign In</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form_container">
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input name="username" id="username" class="form-control" placeholder="Enter username" />
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input name="password" id="password" type="password" class="form-control" placeholder="Enter password" />
+                            </div>
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="text-danger">
+                                    @foreach (var m in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                    {
+                                        <div>@m.ErrorMessage</div>
+                                    }
+                                </div>
+                            }
+                            <div class="btn_box">
+                                <button type="submit" class="btn btn-primary">Sign In</button>
+                                <a class="btn btn-link" href="@returnUrl">Cancel</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
