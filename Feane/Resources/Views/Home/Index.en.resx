@@ -18,6 +18,12 @@
 	<data name="Dish_PizzaDescription" xml:space="preserve"><value>Pizza is always a good idea! And ours is even more so. We cook quickly and eat with pleasure. Order now!</value></data>
 	<data name="Dish_DeliciousBurger" xml:space="preserve"><value>Delicious Burger</value></data>
 	<data name="Dish_BurgerDescription" xml:space="preserve"><value>It's good</value></data>
+	<data name="Dish_FrenchFries" xml:space="preserve"><value>Delicious French Fries</value></data>
+	<data name="Dish_BurgerDescription" xml:space="preserve"><value>It's good</value></data>
+	<data name="Dish_DeliciousPasta" xml:space="preserve"><value>Delicious Pasta</value></data>
+	<data name="Dish_PastaDescription" xml:space="preserve"><value>It's good</value></data>
+	<data name="Dish_FriesDescription" xml:space="preserve"><value>It's good</value></data>
+	<data name="Dish_TastyBurger" xml:space="preserve"><value>Delicious Tasty Burger</value></data>
 	<data name="ViewMore" xml:space="preserve"><value>View More</value></data>
 	<data name="About_WeAreFeane" xml:space="preserve"><value>We Are Feane</value></data>
 	<data name="About_Text" xml:space="preserve"><value>At Feane, we believe that real food is an art that brings people together. Our cuisine is a harmony of traditional recipes and modern trends, where every ingredient is carefully selected and every dish is prepared with a passion for taste and quality.</value></data>

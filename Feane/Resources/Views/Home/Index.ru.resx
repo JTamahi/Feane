@@ -16,6 +16,13 @@
 	<data name="Filter_Fries" xml:space="preserve"><value>Картошка</value></data>
 	<data name="Dish_DeliciousPizza" xml:space="preserve"><value>Вкусная пицца</value></data>
 	<data name="Dish_PizzaDescription" xml:space="preserve"><value>Пицца всегда хорошая идея! Наша ещё лучше. Готовим быстро — едим с удовольствием. Заказывайте!</value></data>
+	<data name="Dish_DeliciousBurger" xml:space="preserve"><value>Вкусный бургер</value></data>
+	<data name="Dish_BurgerDescription" xml:space="preserve"><value>Это вкусно</value></data>
+	<data name="Dish_FrenchFries" xml:space="preserve"><value>Вкусная картошка</value></data>
+	<data name="Dish_FriesDescription" xml:space="preserve"><value>Это вкусно</value></data>
+	<data name="Dish_TastyBurger" xml:space="preserve"><value>Вкусный мощный бургер</value></data>
+	<data name="Dish_DeliciousPasta" xml:space="preserve"><value>Вкусная паста</value></data>
+	<data name="Dish_PastaDescription" xml:space="preserve"><value>Это вкусно</value></data>
 	<data name="ViewMore" xml:space="preserve"><value>Показать ещё</value></data>
 	<data name="About_WeAreFeane" xml:space="preserve"><value>Мы — Feane</value></data>
 	<data name="About_Text" xml:space="preserve"><value>В Feane мы считаем, что настоящая еда — это искусство, которое объединяет людей. Наша кухня — гармония традиционных рецептов и современных тенденций, где каждый ингредиент тщательно отобран, а каждое блюдо приготовлено с любовью к вкусу и качеству.</value></data>
