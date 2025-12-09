@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="OurMenu_Title">
+		<value>Наше меню</value>
+	</data>
+	<data name="Filter_All">
+		<value>Все</value>
+	</data>
+	<data name="Filter_Burger">
+		<value>Бургеры</value>
+	</data>
+	<data name="Filter_Pizza">
+		<value>Пицца</value>
+	</data>
+	<data name="Filter_Pasta">
+		<value>Паста</value>
+	</data>
+	<data name="Filter_Fries">
+		<value>Картошка</value>
+	</data>
+	<data name="Dish_DeliciousPizza">
+		<value>Вкусная пицца</value>
+	</data>
+	<data name="Dish_DeliciousBurger">
+		<value>Вкусный бургер</value>
+	</data>
+	<data name="Dish_DeliciousPasta">
+		<value>Вкусная паста</value>
+	</data>
+	<data name="Dish_LongText">
+		<value>Текст описания блюда (пример): Veniam debitis quaerat officiis ...</value>
+	</data>
+	<data name="ViewMore">
+		<value>Показать ещё</value>
+	</data>
+</root>

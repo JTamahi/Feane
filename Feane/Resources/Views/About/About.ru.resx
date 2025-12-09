@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="About_WeAreFeane">
+		<value>Мы — Feane</value>
+	</data>
+	<data name="About_LongText">
+		<value>Существует множество вариантов Lorem Ipsum, но большинство из них были изменены: добавлен юмор или случайные слова, что делает текст неестественным. Здесь можно разместить полноценное описание ресторана.</value>
+	</data>
+	<data name="ReadMore">
+		<value>Читать далее</value>
+	</data>
+</root>

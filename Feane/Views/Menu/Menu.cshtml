@@ -1,6 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
 }
 
@@ -20,16 +19,16 @@
 		<div class="container">
 			<div class="heading_container heading_center">
 				<h2>
-					Our Menu
+					@Localizer["OurMenu_Title"]
 				</h2>
 			</div>
 
 			<ul class="filters_menu">
-				<li class="active" data-filter="*">All</li>
-				<li data-filter=".burger">Burger</li>
-				<li data-filter=".pizza">Pizza</li>
-				<li data-filter=".pasta">Pasta</li>
-				<li data-filter=".fries">Fries</li>
+				<li class="active" data-filter="*">@Localizer["Filter_All"]</li>
+				<li data-filter=".burger">@Localizer["Filter_Burger"]</li>
+				<li data-filter=".pizza">@Localizer["Filter_Pizza"]</li>
+				<li data-filter=".pasta">@Localizer["Filter_Pasta"]</li>
+				<li data-filter=".fries">@Localizer["Filter_Fries"]</li>
 			</ul>
 
 			<div class="filters-content">
@@ -42,10 +41,10 @@
 								</div>
 								<div class="detail-box">
 									<h5>
-										Delicious Pizza
+										@Localizer["Dish_DeliciousPizza"]
 									</h5>
 									<p>
-										Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+										@Localizer["Dish_LongText"]
 									</p>
 									<div class="options">
 										<h6>
@@ -122,10 +121,10 @@
 								</div>
 								<div class="detail-box">
 									<h5>
-										Delicious Burger
+										@Localizer["Dish_DeliciousBurger"]
 									</h5>
 									<p>
-										Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+										@Localizer["Dish_LongText"]
 									</p>
 									<div class="options">
 										<h6>
@@ -200,10 +199,10 @@
 								</div>
 								<div class="detail-box">
 									<h5>
-										Delicious Pizza
+										@Localizer["Dish_DeliciousPizza"]
 									</h5>
 									<p>
-										Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+										@Localizer["Dish_LongText"]
 									</p>
 									<div class="options">
 										<h6>
@@ -278,10 +277,10 @@
 								</div>
 								<div class="detail-box">
 									<h5>
-										Delicious Pasta
+										@Localizer["Dish_DeliciousPasta"]
 									</h5>
 									<p>
-										Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+										@Localizer["Dish_LongText"]
 									</p>
 									<div class="options">
 										<h6>
@@ -356,10 +355,10 @@
 								</div>
 								<div class="detail-box">
 									<h5>
-										French Fries
+										@Localizer["Dish_FrenchFries"]
 									</h5>
 									<p>
-										Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+										@Localizer["Dish_LongText"]
 									</p>
 									<div class="options">
 										<h6>
@@ -434,10 +433,10 @@
 								</div>
 								<div class="detail-box">
 									<h5>
-										Delicious Pizza
+										@Localizer["Dish_DeliciousPizza"]
 									</h5>
 									<p>
-										Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+										@Localizer["Dish_LongText"]
 									</p>
 									<div class="options">
 										<h6>
@@ -512,10 +511,10 @@
 								</div>
 								<div class="detail-box">
 									<h5>
-										Tasty Burger
+										@Localizer["Dish_TastyBurger"]
 									</h5>
 									<p>
-										Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+										@Localizer["Dish_LongText"]
 									</p>
 									<div class="options">
 										<h6>
@@ -590,10 +589,10 @@
 								</div>
 								<div class="detail-box">
 									<h5>
-										Tasty Burger
+										@Localizer["Dish_TastyBurger"]
 									</h5>
 									<p>
-										Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+										@Localizer["Dish_LongText"]
 									</p>
 									<div class="options">
 										<h6>
@@ -665,10 +664,10 @@
 									<img src="@(Url.Content("~/images/f9.png"))" alt=""></div>
 								<div class="detail-box">
 									<h5>
-										Delicious Pasta
+										@Localizer["Dish_DeliciousPasta"]
 									</h5>
 									<p>
-										Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+										@Localizer["Dish_LongText"]
 									</p>
 									<div class="options">
 										<h6>
@@ -739,7 +738,7 @@
 			</div>
 			<div class="btn-box">
 				<a href="">
-					View More
+					@Localizer["ViewMore"]
 				</a>
 			</div>
 		</div>

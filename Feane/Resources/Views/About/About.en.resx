@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="About_WeAreFeane">
+		<value>We Are Feane</value>
+	</data>
+	<data name="About_LongText">
+		<value>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</value>
+	</data>
+	<data name="ReadMore">
+		<value>Read More</value>
+	</data>
+</root>

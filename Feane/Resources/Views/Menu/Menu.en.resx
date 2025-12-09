@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="OurMenu_Title">
+		<value>Our Menu</value>
+	</data>
+	<data name="Filter_All">
+		<value>All</value>
+	</data>
+	<data name="Filter_Burger">
+		<value>Burger</value>
+	</data>
+	<data name="Filter_Pizza">
+		<value>Pizza</value>
+	</data>
+	<data name="Filter_Pasta">
+		<value>Pasta</value>
+	</data>
+	<data name="Filter_Fries">
+		<value>Fries</value>
+	</data>
+	<data name="Dish_DeliciousPizza">
+		<value>Delicious Pizza</value>
+	</data>
+	<data name="Dish_DeliciousBurger">
+		<value>Delicious Burger</value>
+	</data>
+	<data name="Dish_DeliciousPasta">
+		<value>Delicious Pasta</value>
+	</data>
+	<data name="Dish_LongText">
+		<value>Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque</value>
+	</data>
+	<data name="ViewMore">
+		<value>View More</value>
+	</data>
+</root>

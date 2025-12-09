@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Book_BookATable">
+		<value>Бронирование столика</value>
+	</data>
+	<data name="Placeholder_YourName">
+		<value>Ваше имя</value>
+	</data>
+	<data name="Placeholder_PhoneNumber">
+		<value>Номер телефона</value>
+	</data>
+	<data name="Placeholder_YourEmail">
+		<value>Ваш Email</value>
+	</data>
+	<data name="Placeholder_HowManyPersons">
+		<value>Сколько человек?</value>
+	</data>
+	<data name="Book_BookNow">
+		<value>Забронировать</value>
+	</data>
+</root>
