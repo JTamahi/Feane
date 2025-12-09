@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Hero_FastFoodTitle" xml:space="preserve"><value>Fast Food Restaurant</value></data>
+	<data name="Hero_Paragraph1" xml:space="preserve"><value>Our restaurant offers juicy grilled burgers, crispy fries, and refreshing milkshakes. Perfect for a family lunch, a quick dinner, or a snack with friends. Fresh ingredients, rich flavor, and fast service. Our rule: no compromise on quality!</value></data>
+	<data name="Hero_Paragraph2" xml:space="preserve"><value>Welcome to the place where your new favorite burger is made. It's all about juicy beef, perfectly fried chicken, and the smoothest milkshakes. Try it and taste the difference!</value></data>
+	<data name="Hero_Paragraph3" xml:space="preserve"><value>It's more than just food. We prepare every dish with care, use local ingredients, and believe that good food brings people together. Come for the flavor, stay for the atmosphere.</value></data>
+	<data name="OrderNow" xml:space="preserve"><value>Order Now</value></data>
+	<data name="Offer_TastyThursdays" xml:space="preserve"><value>Tasty Thursdays</value></data>
+	<data name="Offer_PizzaDays" xml:space="preserve"><value>Pizza Days</value></data>
+	<data name="Off" xml:space="preserve"><value>Off</value></data>
+	<data name="Menu_OurMenu" xml:space="preserve"><value>Our Menu</value></data>
+	<data name="Filter_All" xml:space="preserve"><value>All</value></data>
+	<data name="Filter_Burger" xml:space="preserve"><value>Burger</value></data>
+	<data name="Filter_Pizza" xml:space="preserve"><value>Pizza</value></data>
+	<data name="Filter_Pasta" xml:space="preserve"><value>Pasta</value></data>
+	<data name="Filter_Fries" xml:space="preserve"><value>Fries</value></data>
+	<data name="Dish_DeliciousPizza" xml:space="preserve"><value>Delicious Pizza</value></data>
+	<data name="Dish_PizzaDescription" xml:space="preserve"><value>Pizza is always a good idea! And ours is even more so. We cook quickly and eat with pleasure. Order now!</value></data>
+	<data name="ViewMore" xml:space="preserve"><value>View More</value></data>
+	<data name="About_WeAreFeane" xml:space="preserve"><value>We Are Feane</value></data>
+	<data name="About_Text" xml:space="preserve"><value>At Feane, we believe that real food is an art that brings people together. Our cuisine is a harmony of traditional recipes and modern trends, where every ingredient is carefully selected and every dish is prepared with a passion for taste and quality.</value></data>
+	<data name="ReadMore" xml:space="preserve"><value>Read More</value></data>
+	<data name="Book_BookATable" xml:space="preserve"><value>Book A Table</value></data>
+	<data name="Placeholder_YourName" xml:space="preserve"><value>Your Name</value></data>
+	<data name="Placeholder_PhoneNumber" xml:space="preserve"><value>Phone Number</value></data>
+	<data name="Placeholder_YourEmail" xml:space="preserve"><value>Your Email</value></data>
+	<data name="Placeholder_HowManyPersons" xml:space="preserve"><value>How many persons?</value></data>
+	<data name="Book_BookNow" xml:space="preserve"><value>Book Now</value></data>
+	<data name="Clients_WhatSaysOurCustomers" xml:space="preserve"><value>What Says Our Customers</value></data>
+</root>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Hero_FastFoodTitle" xml:space="preserve"><value>Ресторан быстрого питания</value></data>
+	<data name="Hero_Paragraph1" xml:space="preserve"><value>Наш ресторан предлагает сочные бургеры на гриле, хрустящую картошку фри и освежающие молочные коктейли. Идеально для семейного обеда, быстрого ужина или перекуса с друзьями. Свежие ингредиенты, богатый вкус и быстрое обслуживание. Наше правило: никаких компромиссов в качестве!</value></data>
+	<data name="Hero_Paragraph2" xml:space="preserve"><value>Добро пожаловать в место, где готовят ваш новый любимый бургер. Всё о сочной говядине, идеально жареной курице и мягких молочных коктейлях. Попробуйте и почувствуйте разницу!</value></data>
+	<data name="Hero_Paragraph3" xml:space="preserve"><value>Это больше, чем еда. Мы готовим каждое блюдо с заботой, используем локальные ингредиенты и верим, что хорошая еда объединяет людей. Приходите за вкусом, оставайтесь за атмосферой.</value></data>
+	<data name="OrderNow" xml:space="preserve"><value>Заказать</value></data>
+	<data name="Offer_TastyThursdays" xml:space="preserve"><value>Вкусные четверги</value></data>
+	<data name="Offer_PizzaDays" xml:space="preserve"><value>Дни пиццы</value></data>
+	<data name="Off" xml:space="preserve"><value>Скидка</value></data>
+	<data name="Menu_OurMenu" xml:space="preserve"><value>Наше меню</value></data>
+	<data name="Filter_All" xml:space="preserve"><value>Все</value></data>
+	<data name="Filter_Burger" xml:space="preserve"><value>Бургеры</value></data>
+	<data name="Filter_Pizza" xml:space="preserve"><value>Пицца</value></data>
+	<data name="Filter_Pasta" xml:space="preserve"><value>Паста</value></data>
+	<data name="Filter_Fries" xml:space="preserve"><value>Картошка</value></data>
+	<data name="Dish_DeliciousPizza" xml:space="preserve"><value>Вкусная пицца</value></data>
+	<data name="Dish_PizzaDescription" xml:space="preserve"><value>Пицца всегда хорошая идея! Наша ещё лучше. Готовим быстро — едим с удовольствием. Заказывайте!</value></data>
+	<data name="ViewMore" xml:space="preserve"><value>Показать ещё</value></data>
+	<data name="About_WeAreFeane" xml:space="preserve"><value>Мы — Feane</value></data>
+	<data name="About_Text" xml:space="preserve"><value>В Feane мы считаем, что настоящая еда — это искусство, которое объединяет людей. Наша кухня — гармония традиционных рецептов и современных тенденций, где каждый ингредиент тщательно отобран, а каждое блюдо приготовлено с любовью к вкусу и качеству.</value></data>
+	<data name="ReadMore" xml:space="preserve"><value>Читать далее</value></data>
+	<data name="Book_BookATable" xml:space="preserve"><value>Забронировать столик</value></data>
+	<data name="Placeholder_YourName" xml:space="preserve"><value>Ваше имя</value></data>
+	<data name="Placeholder_PhoneNumber" xml:space="preserve"><value>Номер телефона</value></data>
+	<data name="Placeholder_YourEmail" xml:space="preserve"><value>Ваш Email</value></data>
+	<data name="Placeholder_HowManyPersons" xml:space="preserve"><value>Сколько человек?</value></data>
+	<data name="Book_BookNow" xml:space="preserve"><value>Забронировать</value></data>
+	<data name="Clients_WhatSaysOurCustomers" xml:space="preserve"><value>Что говорят наши клиенты</value></data>
+</root>

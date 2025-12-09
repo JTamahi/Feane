@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Nav_Home" xml:space="preserve"><value>Home</value></data>
+	<data name="Nav_Menu" xml:space="preserve"><value>Menu</value></data>
+	<data name="Nav_About" xml:space="preserve"><value>About</value></data>
+	<data name="Nav_BookTable" xml:space="preserve"><value>Book Table</value></data>
+	<data name="OrderOnline" xml:space="preserve"><value>Order Online</value></data>
+</root>

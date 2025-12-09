@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Footer_ContactUs" xml:space="preserve"><value>Свяжитесь с нами</value></data>
+	<data name="Footer_Location" xml:space="preserve"><value>Адрес</value></data>
+	<data name="Footer_Call" xml:space="preserve"><value>Позвоните</value></data>
+	<data name="Footer_AboutText" xml:space="preserve"><value>Необходимо, делает это первым настоящим генератором в Интернете. Использует словарь более 200 латинских слов, объединённых...</value></data>
+	<data name="Footer_OpeningHours" xml:space="preserve"><value>Часы работы</value></data>
+	<data name="Footer_Everyday" xml:space="preserve"><value>Ежедневно</value></data>
+	<data name="Footer_Hours" xml:space="preserve"><value>10:00 - 22:00</value></data>
+	<data name="Footer_AllRights" xml:space="preserve"><value>Все права защищены</value></data>
+	<data name="Footer_DistributedBy" xml:space="preserve"><value>Распределено</value></data>
+</root>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Footer_ContactUs" xml:space="preserve"><value>Contact Us</value></data>
+	<data name="Footer_Location" xml:space="preserve"><value>Location</value></data>
+	<data name="Footer_Call" xml:space="preserve"><value>Call</value></data>
+	<data name="Footer_AboutText" xml:space="preserve"><value>Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with</value></data>
+	<data name="Footer_OpeningHours" xml:space="preserve"><value>Opening Hours</value></data>
+	<data name="Footer_Everyday" xml:space="preserve"><value>Everyday</value></data>
+	<data name="Footer_Hours" xml:space="preserve"><value>10.00 Am -10.00 Pm</value></data>
+	<data name="Footer_AllRights" xml:space="preserve"><value>All Rights Reserved By</value></data>
+	<data name="Footer_DistributedBy" xml:space="preserve"><value>Distributed By</value></data>
+</root>

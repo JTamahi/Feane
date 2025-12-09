@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Nav_Home" xml:space="preserve"><value>Главная</value></data>
+	<data name="Nav_Menu" xml:space="preserve"><value>Меню</value></data>
+	<data name="Nav_About" xml:space="preserve"><value>О нас</value></data>
+	<data name="Nav_BookTable" xml:space="preserve"><value>Бронирование столика</value></data>
+	<data name="OrderOnline" xml:space="preserve"><value>Заказать онлайн</value></data>
+</root>

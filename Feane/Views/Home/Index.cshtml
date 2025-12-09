@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -20,14 +22,14 @@
                             <div class="col-md-7 col-lg-6 ">
                                 <div class="detail-box">
                                     <h1>
-                                        Fast Food Restaurant
+                                        @Localizer["Hero_FastFoodTitle"]
                                     </h1>
                                     <p>
-                                        Our restaurant offers juicy grilled burgers, crispy fries, and refreshing milkshakes. Perfect for a family lunch, a quick dinner, or a snack with friends. Fresh ingredients, rich flavor, and fast service. Our rule: no compromise on quality!
+                                        @Localizer["Hero_Paragraph1"]
                                     </p>
                                     <div class="btn-box">
                                         <a href="" class="btn1">
-                                            Order Now
+                                            @Localizer["OrderNow"]
                                         </a>
                                     </div>
                                 </div>
@@ -41,14 +43,14 @@
                             <div class="col-md-7 col-lg-6 ">
                                 <div class="detail-box">
                                     <h1>
-                                        Fast Food Restaurant
+                                        @Localizer["Hero_FastFoodTitle"]
                                     </h1>
                                     <p>
-                                        Welcome to the place where your new favorite burger is made. It's all about juicy beef, perfectly fried chicken, and the smoothest milkshakes. Try it and taste the difference!
+                                        @Localizer["Hero_Paragraph2"]
                                     </p>
                                     <div class="btn-box">
                                         <a href="" class="btn1">
-                                            Order Now
+                                            @Localizer["OrderNow"]
                                         </a>
                                     </div>
                                 </div>
@@ -62,14 +64,14 @@
                             <div class="col-md-7 col-lg-6 ">
                                 <div class="detail-box">
                                     <h1>
-                                        Fast Food Restaurant
+                                        @Localizer["Hero_FastFoodTitle"]
                                     </h1>
                                     <p>
-                                        It's more than just food. We prepare every dish with care, use local ingredients, and believe that good food brings people together. Come for the flavor, stay for the atmosphere.
+                                        @Localizer["Hero_Paragraph3"]
                                     </p>
                                     <div class="btn-box">
                                         <a href="" class="btn1">
-                                            Order Now
+                                            @Localizer["OrderNow"]
                                         </a>
                                     </div>
                                 </div>
@@ -104,13 +106,13 @@
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Tasty Thursdays
+                                @Localizer["Offer_TastyThursdays"]
                             </h5>
                             <h6>
-                                <span>20%</span> Off
+                                <span>20%</span> @Localizer["Off"]
                             </h6>
                             <a href="">
-                                Order Now
+                                @Localizer["OrderNow"]
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                 <g>
                                 <g>
@@ -174,13 +176,13 @@
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Pizza Days
+                                @Localizer["Offer_PizzaDays"]
                             </h5>
                             <h6>
-                                <span>15%</span> Off
+                                <span>15%</span> @Localizer["Off"]
                             </h6>
                             <a href="">
-                                Order Now
+                                @Localizer["OrderNow"]
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                 <g>
                                 <g>
@@ -249,16 +251,16 @@
     <div class="container">
         <div class="heading_container heading_center">
             <h2>
-                Our Menu
+                @Localizer["Menu_OurMenu"]
             </h2>
         </div>
 
         <ul class="filters_menu">
-            <li class="active" data-filter="*">All</li>
-            <li data-filter=".burger">Burger</li>
-            <li data-filter=".pizza">Pizza</li>
-            <li data-filter=".pasta">Pasta</li>
-            <li data-filter=".fries">Fries</li>
+            <li class="active" data-filter="*">@Localizer["Filter_All"]</li>
+            <li data-filter=".burger">@Localizer["Filter_Burger"]</li>
+            <li data-filter=".pizza">@Localizer["Filter_Pizza"]</li>
+            <li data-filter=".pasta">@Localizer["Filter_Pasta"]</li>
+            <li data-filter=".fries">@Localizer["Filter_Fries"]</li>
         </ul>
 
         <div class="filters-content">
@@ -271,10 +273,10 @@
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Delicious Pizza
+                                    @Localizer["Dish_DeliciousPizza"]
                                 </h5>
                                 <p>
-                                    Pizza is always a good idea! And ours is even more so. We cook quickly and eat with pleasure. Order now!
+                                    @Localizer["Dish_PizzaDescription"]
                                 </p>
                                 <div class="options">
                                     <h6>
@@ -347,10 +349,10 @@
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Delicious Burger
+                                    @Localizer["Dish_DeliciousBurger"]
                                 </h5>
                                 <p>
-                                    A juicy patty, lots of cheese, signature sauce, and a soft bun. A truly memorable flavor.
+                                    @Localizer["Dish_BurgerDescription"]
                                 </p>
                                 <div class="options">
                                     <h6>
@@ -423,10 +425,10 @@
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Delicious Pizza
+                                    @Localizer["Dish_DeliciousPizza"]
                                 </h5>
                                 <p>
-                                    Pizza is always a good idea! And ours is even more so. We cook quickly and eat with pleasure. Order now!
+                                    @Localizer["Dish_PizzaDescription"]
                                 </p>
                                 <div class="options">
                                     <h6>
@@ -499,10 +501,10 @@
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Delicious Pasta
+                                    @Localizer["Dish_DeliciousPasta"]
                                 </h5>
                                 <p>
-                                    Tender al dente pasta with aromatic sauces. Creamy carbonara, passionate salami, homemade bolognese.
+                                    @Localizer["Dish_PastaDescription"]
                                 </p>
                                 <div class="options">
                                     <h6>
@@ -575,10 +577,10 @@
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    French Fries
+                                    @Localizer["Dish_FrenchFries"]
                                 </h5>
                                 <p>
-                                    Hot off the grill, with a hint of spice. The perfect complement to any burger.
+                                    @Localizer["Dish_FriesDescription"]
                                 </p>
                                 <div class="options">
                                     <h6>
@@ -636,6 +638,8 @@
                         </g>
                                         <g>
                         </g>
+                                        <g>
+                        </g>
                       </svg>
                                     </a>
                                 </div>
@@ -651,10 +655,10 @@
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Delicious Pizza
+                                    @Localizer["Dish_DeliciousPizza"]
                                 </h5>
                                 <p>
-                                    Pizza is always a good idea! And ours is even more so. We cook quickly and eat with pleasure. Order now!
+                                    @Localizer["Dish_PizzaDescription"]
                                 </p>
                                 <div class="options">
                                     <h6>
@@ -727,10 +731,10 @@
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Tasty Burger
+                                    @Localizer["Dish_TastyBurger"]
                                 </h5>
                                 <p>
-                                    A juicy patty, lots of cheese, signature sauce, and a soft bun. A truly memorable flavor.
+                                    @Localizer["Dish_BurgerDescription"]
                                 </p>
                                 <div class="options">
                                     <h6>
@@ -788,7 +792,7 @@
                         </g>
                                         <g>
                         </g>
-                      </svg>
+                          </svg>
                                     </a>
                                 </div>
                             </div>
@@ -803,10 +807,10 @@
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Tasty Burger
+                                    @Localizer["Dish_TastyBurger"]
                                 </h5>
                                 <p>
-                                    A juicy patty, lots of cheese, signature sauce, and a soft bun. A truly memorable flavor.
+                                    @Localizer["Dish_BurgerDescription"]
                                 </p>
                                 <div class="options">
                                     <h6>
@@ -879,10 +883,10 @@
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Delicious Pasta
+                                    @Localizer["Dish_DeliciousPasta"]
                                 </h5>
                                 <p>
-                                    Tender al dente pasta with aromatic sauces. Creamy carbonara, passionate salami, homemade bolognese.
+                                    @Localizer["Dish_PastaDescription"]
                                 </p>
                                 <div class="options">
                                     <h6>
@@ -951,7 +955,7 @@
         </div>
         <div class="btn-box">
             <a href="">
-                View More
+                @Localizer["ViewMore"]
             </a>
         </div>
     </div>
@@ -973,16 +977,14 @@
                 <div class="detail-box">
                     <div class="heading_container">
                         <h2>
-                            We Are Feane
+                            @Localizer["About_WeAreFeane"]
                         </h2>
                     </div>
                     <p>
-                        At Feane, we believe that real food is an art that brings people together. Our cuisine is a harmony
-                        of traditional recipes and modern trends, where every ingredient is carefully selected and every dish
-                        is prepared with a passion for taste and quality. We create more than just meals, but true culinary experiences.
+                        @Localizer["About_Text"]
                     </p>
                     <a href="">
-                        Read More
+                        @Localizer["ReadMore"]
                     </a>
                 </div>
             </div>
@@ -996,7 +998,7 @@
     <div class="container">
         <div class="heading_container">
             <h2>
-                Book A Table
+                @Localizer["Book_BookATable"]
             </h2>
         </div>
         <div class="row">
@@ -1004,18 +1006,18 @@
                 <div class="form_container">
                     <form action="">
                         <div>
-                            <input type="text" class="form-control" placeholder="Your Name" />
+                            <input type="text" class="form-control" placeholder="@Localizer["Placeholder_YourName"]" />
                         </div>
                         <div>
-                            <input type="text" class="form-control" placeholder="Phone Number" />
+                            <input type="text" class="form-control" placeholder="@Localizer["Placeholder_PhoneNumber"]" />
                         </div>
                         <div>
-                            <input type="email" class="form-control" placeholder="Your Email" />
+                            <input type="email" class="form-control" placeholder="@Localizer["Placeholder_YourEmail"]" />
                         </div>
                         <div>
                             <select class="form-control nice-select wide">
                                 <option value="" disabled selected>
-                                    How many persons?
+                                    @Localizer["Placeholder_HowManyPersons"]
                                 </option>
                                 <option value="">
                                     2
@@ -1036,7 +1038,7 @@
                         </div>
                         <div class="btn_box">
                             <button>
-                                Book Now
+                                @Localizer["Book_BookNow"]
                             </button>
                         </div>
                     </form>
@@ -1057,7 +1059,7 @@
     <div class="container">
         <div class="heading_container heading_center psudo_white_primary mb_45">
             <h2>
-                What Says Our Customers
+                @Localizer["Clients_WhatSaysOurCustomers"]
             </h2>
         </div>
         <div class="carousel-wrap row ">
