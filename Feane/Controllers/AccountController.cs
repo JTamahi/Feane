@@ -50,6 +50,13 @@ namespace Feane.Controllers
                 return View();
             }
 
+            // Устанавливаем cookie с именем пользователя
+            Response.Cookies.Append("FeaneUser", username, new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = DateTimeOffset.UtcNow.AddHours(1)
+            });
+
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                 return LocalRedirect(returnUrl);
 
@@ -60,9 +67,12 @@ namespace Feane.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("Пользователь вышел");
+
+            // Удаляем cookie
+            Response.Cookies.Delete("FeaneUser");
 
             return RedirectToAction("Index", "Home");
         }
+
     }
 }

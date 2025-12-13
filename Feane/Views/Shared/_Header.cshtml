@@ -1,6 +1,11 @@
 ﻿@using System
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
+
+@{
+    var userCookie = Context.Request.Cookies["FeaneUser"];
+}
+
 @functions {
     private string CurrentController => ViewContext.RouteData.Values["controller"]?.ToString() ?? string.Empty;
     private string CurrentAction => ViewContext.RouteData.Values["action"]?.ToString() ?? string.Empty;
@@ -52,21 +57,18 @@
                     </li>
                 </ul>
                 <div class="user_option">
-                    @{
-                        var userCookie = Context.Request.Cookies["FeaneUser"];
-                        if (!string.IsNullOrEmpty(userCookie))
-                        {
-                            <a href="@Url.Action("LogOut", "Account")" class="user_link">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span style="margin-left:6px;">@userCookie</span>
-                            </a>
-                        }
-                        else
-                        {
-                            <a href="@Url.Action("Login", "Account", new { returnUrl = Context.Request.Path + Context.Request.QueryString })" class="user_link">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                            </a>
-                        }
+                    @if (!string.IsNullOrEmpty(userCookie))
+                    {
+                        <a href="@Url.Action("Logout", "Account")" class="user_link">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span style="margin-left:6px;">@userCookie | LogOut</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login", "Account", new { returnUrl = Context.Request.Path + Context.Request.QueryString })" class="user_link">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
                     }
 
                     <!-- language switch buttons -->
