@@ -1,11 +1,26 @@
-using System;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Feane.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly ILogger<AccountController> _logger;
+
+        public AccountController(
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
+            ILogger<AccountController> logger)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _logger = logger;
+        }
+
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
@@ -15,36 +30,38 @@ namespace Feane.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(string username, string password, string returnUrl = null)
+        public async Task<IActionResult> Login(string username, string password, string returnUrl = null)
         {
-            // Очень простой пример: в реальном приложении используйте проверку пароля/Identity
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                ModelState.AddModelError(string.Empty, "Please enter username and password.");
-                ViewData["ReturnUrl"] = returnUrl;
+                ModelState.AddModelError("", "Username and password are required");
                 return View();
             }
 
-            // Устанавливаем cookie с именем пользователя (для демонстрации)
-            var cookieOptions = new CookieOptions
+            var result = await _signInManager.PasswordSignInAsync(
+                username,
+                password,
+                isPersistent: true,
+                lockoutOnFailure: false);
+
+            if (!result.Succeeded)
             {
-                HttpOnly = true,
-                Expires = DateTimeOffset.UtcNow.AddDays(7)
-            };
-            Response.Cookies.Append("FeaneUser", username, cookieOptions);
+                ModelState.AddModelError("", "Invalid login or password");
+                return View();
+            }
 
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-            {
                 return LocalRedirect(returnUrl);
-            }
 
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
-        public IActionResult LogOut()
+
+        public async Task<IActionResult> Logout()
         {
-            Response.Cookies.Delete("FeaneUser");
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("Пользователь вышел");
+
             return RedirectToAction("Index", "Home");
         }
     }
