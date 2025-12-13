@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Register_Title" xml:space="preserve"><value>Register</value></data>
+	<data name="Register_Heading" xml:space="preserve"><value>Create an account</value></data>
+	<data name="Label_UserName" xml:space="preserve"><value>Username</value></data>
+	<data name="Label_Email" xml:space="preserve"><value>Email</value></data>
+	<data name="Label_Password" xml:space="preserve"><value>Password</value></data>
+	<data name="Label_ConfirmPassword" xml:space="preserve"><value>Confirm Password</value></data>
+	<data name="Placeholder_UserName" xml:space="preserve"><value>Enter username</value></data>
+	<data name="Placeholder_Email" xml:space="preserve"><value>Enter email</value></data>
+	<data name="Placeholder_Password" xml:space="preserve"><value>Enter password</value></data>
+	<data name="Placeholder_ConfirmPassword" xml:space="preserve"><value>Repeat password</value></data>
+	<data name="Register_Button" xml:space="preserve"><value>Register</value></data>
+	<data name="AlreadyHaveAccount" xml:space="preserve"><value>Already have an account?</value></data>
+	<data name="Login_LinkText" xml:space="preserve"><value>Sign in</value></data>
+</root>

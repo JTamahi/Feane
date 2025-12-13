@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="Register_Title" xml:space="preserve"><value>Регистрация</value></data>
+	<data name="Register_Heading" xml:space="preserve"><value>Создать аккаунт</value></data>
+	<data name="Label_UserName" xml:space="preserve"><value>Имя пользователя</value></data>
+	<data name="Label_Email" xml:space="preserve"><value>Email</value></data>
+	<data name="Label_Password" xml:space="preserve"><value>Пароль</value></data>
+	<data name="Label_ConfirmPassword" xml:space="preserve"><value>Подтвердите пароль</value></data>
+	<data name="Placeholder_UserName" xml:space="preserve"><value>Введите имя пользователя</value></data>
+	<data name="Placeholder_Email" xml:space="preserve"><value>Введите email</value></data>
+	<data name="Placeholder_Password" xml:space="preserve"><value>Введите пароль</value></data>
+	<data name="Placeholder_ConfirmPassword" xml:space="preserve"><value>Повторите пароль</value></data>
+	<data name="Register_Button" xml:space="preserve"><value>Зарегистрироваться</value></data>
+	<data name="AlreadyHaveAccount" xml:space="preserve"><value>Уже есть аккаунт?</value></data>
+	<data name="Login_LinkText" xml:space="preserve"><value>Вход</value></data>
+</root>

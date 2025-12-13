@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Login_Title" xml:space="preserve"><value>Login</value></data>
+  <data name="SignIn_Heading" xml:space="preserve"><value>Sign In</value></data>
+  <data name="Label_UserName" xml:space="preserve"><value>Username</value></data>
+  <data name="Placeholder_EnterUsername" xml:space="preserve"><value>Enter username</value></data>
+  <data name="Label_Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Placeholder_EnterPassword" xml:space="preserve"><value>Enter password</value></data>
+  <data name="SignIn_Button" xml:space="preserve"><value>Sign In</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+	<data name="Register" xml:space="preserve"><value>Register</value></data>
+</root>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Login_Title" xml:space="preserve"><value>Вход</value></data>
+  <data name="SignIn_Heading" xml:space="preserve"><value>Вход в аккаунт</value></data>
+  <data name="Label_UserName" xml:space="preserve"><value>Имя пользователя</value></data>
+  <data name="Placeholder_EnterUsername" xml:space="preserve"><value>Введите имя пользователя</value></data>
+  <data name="Label_Password" xml:space="preserve"><value>Пароль</value></data>
+  <data name="Placeholder_EnterPassword" xml:space="preserve"><value>Введите пароль</value></data>
+  <data name="SignIn_Button" xml:space="preserve"><value>Войти</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отмена</value></data>
+	<data name="Register" xml:space="preserve"><value>Регистрация</value></data>
+</root>
