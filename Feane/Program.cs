@@ -14,23 +14,6 @@ builder.Services.AddControllersWithViews()
     .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
 
-//получили строку подключения к БД
-string conn = builder.Configuration.GetConnectionString("DefaultConnection");
-
-//решили зависимость 
-builder.Services.AddDbContext<AppIdentityDbContext>(options =>
-options.UseSqlServer(conn));
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-options.UseSqlServer(conn));
-
-builder.Services
-    .AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppIdentityDbContext>()
-    .AddDefaultTokenProviders();
-
-builder.Services.AddControllersWithViews();
-
 
 var app = builder.Build();
 
