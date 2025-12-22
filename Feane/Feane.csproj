@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MIddleware\" />
     <Folder Include="Filters\" />
   </ItemGroup>
 

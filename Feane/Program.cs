@@ -1,4 +1,5 @@
 using System.Globalization;
+using Feane.Middleware;
 using Feane.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -49,6 +50,8 @@ var app = builder.Build();
 // =====================
 // 4) Middleware pipeline
 // =====================
+
+app.UseMiddleware<CorrelationIdMiddleware>();
 
 // (позже сюда добавим: CorrelationIdMiddleware, RequestLoggingMiddleware, ProblemDetails и т.д.)
 
