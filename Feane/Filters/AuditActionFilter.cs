@@ -1,10 +1,13 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 
 namespace Feane.Filters;
 
-public sealed class AuditActionFilter : IAsyncActionFilter
+public sealed class AuditActionFilter : IAsyncActionFilter, IOrderedFilter
 {
+    public int Order => -1000;
+
     private readonly ILogger<AuditActionFilter> _logger;
 
     public AuditActionFilter(ILogger<AuditActionFilter> logger)
@@ -14,6 +17,8 @@ public sealed class AuditActionFilter : IAsyncActionFilter
 
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
+        _logger.LogInformation("AF BEFORE (Order={Order})", Order);
+
         var sw = Stopwatch.StartNew();
 
         var correlationId = context.HttpContext.TraceIdentifier;
@@ -23,31 +28,35 @@ public sealed class AuditActionFilter : IAsyncActionFilter
         var path = context.HttpContext.Request.Path.ToString();
         var method = context.HttpContext.Request.Method;
 
-        // Важно: не логируем пароли/большие тела запроса. Логируем только имена аргументов.
         var args = string.Join(", ", context.ActionArguments.Keys);
 
-        _logger.LogInformation("AUDIT START {Method} {Path} Action={Action} Args=[{Args}] User={User} CorrelationId={CorrelationId}",
+        _logger.LogInformation(
+            "AUDIT START {Method} {Path} Action={Action} Args=[{Args}] User={User} CorrelationId={CorrelationId}",
             method, path, actionName, args, userName, correlationId);
 
         var executed = await next();
-        sw.Stop();
 
-        int statusCode;
+        sw.Stop();
 
         if (executed.Exception != null && !executed.ExceptionHandled)
         {
-            statusCode = StatusCodes.Status500InternalServerError;
+            var statusCode = StatusCodes.Status500InternalServerError;
 
-            _logger.LogWarning("AUDIT FAIL {Method} {Path} Action={Action} Status={Status} TimeMs={TimeMs} User={User} CorrelationId={CorrelationId}",
+            _logger.LogWarning(
+                "AUDIT FAIL {Method} {Path} Action={Action} Status={Status} TimeMs={TimeMs} User={User} CorrelationId={CorrelationId}",
                 method, path, actionName, statusCode, sw.ElapsedMilliseconds, userName, correlationId);
 
+            // Не выставляем ExceptionHandled=true — пусть глобальный handler обработает.
+            _logger.LogInformation("AF AFTER (Order={Order})", Order);
             return;
         }
 
-        statusCode = context.HttpContext.Response.StatusCode;
+        var okStatusCode = context.HttpContext.Response.StatusCode;
 
-        _logger.LogInformation("AUDIT END {Method} {Path} Action={Action} Status={Status} TimeMs={TimeMs} User={User} CorrelationId={CorrelationId}",
-            method, path, actionName, statusCode, sw.ElapsedMilliseconds, userName, correlationId);
+        _logger.LogInformation(
+            "AUDIT END {Method} {Path} Action={Action} Status={Status} TimeMs={TimeMs} User={User} CorrelationId={CorrelationId}",
+            method, path, actionName, okStatusCode, sw.ElapsedMilliseconds, userName, correlationId);
 
+        _logger.LogInformation("AF AFTER (Order={Order})", Order);
     }
 }

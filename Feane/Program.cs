@@ -49,13 +49,11 @@ builder.Services.AddScoped<RequestTimingResourceFilter>();
 builder.Services.AddScoped<AuditActionFilter>();
 builder.Services.AddScoped<ResponseHeadersResultFilter>();
 
-
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.AddService<RequestTimingResourceFilter>();
     options.Filters.AddService<AuditActionFilter>();
     options.Filters.AddService<ResponseHeadersResultFilter>();
-
 })
 .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
 .AddDataAnnotationsLocalization();

@@ -1,16 +1,26 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 
 namespace Feane.Filters;
 
-public sealed class ResponseHeadersResultFilter : IAsyncResultFilter
+public sealed class ResponseHeadersResultFilter : IAsyncResultFilter, IOrderedFilter
 {
-    private readonly IConfiguration _config;
+    public int Order => 1000;
 
-    public ResponseHeadersResultFilter(IConfiguration config) => _config = config;
+    private readonly IConfiguration _config;
+    private readonly ILogger<ResponseHeadersResultFilter> _logger;
+
+    public ResponseHeadersResultFilter(IConfiguration config, ILogger<ResponseHeadersResultFilter> logger)
+    {
+        _config = config;
+        _logger = logger;
+    }
 
     public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
     {
+        _logger.LogInformation("ResF BEFORE (Order={Order})", Order);
+
         var version = _config["App:Version"] ?? "dev";
         var correlationId = context.HttpContext.TraceIdentifier;
 
@@ -19,17 +29,13 @@ public sealed class ResponseHeadersResultFilter : IAsyncResultFilter
 
         context.HttpContext.Response.OnStarting(() =>
         {
-            long elapsedMs;
+            long elapsedMs = 0;
 
             if (context.HttpContext.Items.TryGetValue(RequestTimingResourceFilter.StopwatchKey, out var obj) &&
                 obj is Stopwatch sw)
             {
                 if (sw.IsRunning) sw.Stop();
-                elapsedMs = sw.ElapsedMilliseconds;     // время с ResourceFilter (раннее)
-            }
-            else
-            {
-                elapsedMs = 0; // если вдруг filter не сработал
+                elapsedMs = sw.ElapsedMilliseconds;
             }
 
             context.HttpContext.Response.Headers["X-Elapsed-ms"] = elapsedMs.ToString();
@@ -37,5 +43,7 @@ public sealed class ResponseHeadersResultFilter : IAsyncResultFilter
         });
 
         await next();
+
+        _logger.LogInformation("ResF AFTER (Order={Order})", Order);
     }
 }
