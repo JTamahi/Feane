@@ -39,6 +39,39 @@ namespace Feane.Controllers
         }
 
         [HttpGet]
+        [HttpGet]
+        public IActionResult StatusCode(int code)
+        {
+            var feature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+            var originalPath = feature?.OriginalPath ?? HttpContext.Request.Path.Value ?? "";
+
+            var accept = HttpContext.Request.Headers.Accept.ToString();
+
+            var isApi =
+                originalPath.StartsWith("/api", StringComparison.OrdinalIgnoreCase) ||
+                accept.Contains("application/json", StringComparison.OrdinalIgnoreCase);
+
+            if (isApi)
+            {
+                var details = new ProblemDetails
+                {
+                    Title = "Request error",
+                    Status = code,
+                    Detail = code == 404 ? "Resource not found." : "Request cannot be processed.",
+                    Instance = $"{Request.Method} {originalPath}"
+                };
+                details.Extensions["correlationId"] = HttpContext.TraceIdentifier;
+
+                return StatusCode(code, details);
+            }
+
+            ViewBag.Code = code;
+            return View("StatusCode");
+        }
+
+
+
+        [HttpGet]
         public IActionResult Throw()
         {
             throw new Exception("Test MVC exception");

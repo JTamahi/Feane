@@ -44,18 +44,18 @@ builder.Services
     .AddEntityFrameworkStores<AppIdentityDbContext>()
     .AddDefaultTokenProviders();
 
-// MVC
-builder.Services.AddControllersWithViews()
-    .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
-    .AddDataAnnotationsLocalization();
-
-
+// MVC + Filters
 builder.Services.AddScoped<AuditActionFilter>();
+builder.Services.AddScoped<ResponseHeadersResultFilter>();
 
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.AddService<AuditActionFilter>();
-});
+    options.Filters.AddService<ResponseHeadersResultFilter>();
+})
+.AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
+.AddDataAnnotationsLocalization();
+
 
 
 builder.Services.AddProblemDetails(options =>
@@ -128,10 +128,10 @@ app.UseExceptionHandler(errorApp =>
 
 // ВАЖНО: чтобы в Development показывалась твоя Error-страница,
 // ВРЕМЕННО закомментируй DeveloperExceptionPage
-// if (app.Environment.IsDevelopment())
-// {
-//     app.UseDeveloperExceptionPage();
-// }
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
 
 // 4) Дальше обычный pipeline
 var supportedCultures = new[]
@@ -152,6 +152,8 @@ app.UseRequestLocalization(requestLocalizationOptions);
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseStatusCodePagesWithReExecute("/Home/StatusCode", "?code={0}");
 
 app.UseAuthentication();
 app.UseAuthorization();
