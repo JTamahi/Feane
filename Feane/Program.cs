@@ -23,6 +23,9 @@ builder.Host.UseSerilog();
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));   
 
 builder.Services
     .AddIdentity<AppUser, IdentityRole>()
@@ -35,6 +38,13 @@ builder.Services.AddControllersWithViews()
 
 
 var app = builder.Build();
+
+// Миграции и инициализация базы
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate(); // создаст БД и заполнит HasData
+}
 
 // Configure supported cultures
 var supportedCultures = new[]
