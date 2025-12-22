@@ -1,4 +1,3 @@
-using System;
 using System.Globalization;
 using Feane.Models;
 using Microsoft.AspNetCore.Identity;
@@ -8,9 +7,9 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Localization
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-
+// =====================
+// 1) Logging (Serilog)
+// =====================
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .WriteTo.Console()
@@ -20,23 +19,48 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-builder.Services.AddDbContext<AppIdentityDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+// =====================
+// 2) Services (DI)
+// =====================
 
+// Localization
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+// EF Core
+builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Identity (AuthN/AuthZ)
 builder.Services
     .AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<AppIdentityDbContext>()
     .AddDefaultTokenProviders();
 
+// MVC
 builder.Services.AddControllersWithViews()
     .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
 
-
+// =====================
+// 3) Build app
+// =====================
 var app = builder.Build();
 
-// Configure supported cultures
+// =====================
+// 4) Middleware pipeline
+// =====================
+
+// (позже сюда добавим: CorrelationIdMiddleware, RequestLoggingMiddleware, ProblemDetails и т.д.)
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+}
+
+// Serilog request logging (все входящие запросы)
+app.UseSerilogRequestLogging();
+
+// Localization (culture cookie)
 var supportedCultures = new[]
 {
     new CultureInfo("en"),
@@ -50,16 +74,8 @@ var requestLocalizationOptions = new RequestLocalizationOptions
     SupportedUICultures = supportedCultures
 };
 
-app.UseSerilogRequestLogging();
-
-// Use localization
 app.UseRequestLocalization(requestLocalizationOptions);
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -67,6 +83,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// =====================
+// 5) Endpoints
+// =====================
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
