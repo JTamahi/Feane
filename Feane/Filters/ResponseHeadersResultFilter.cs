@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Feane.Models;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 
@@ -8,12 +9,17 @@ public sealed class ResponseHeadersResultFilter : IAsyncResultFilter, IOrderedFi
 {
     public int Order => 1000;
 
-    private readonly IConfiguration _config;
+    private readonly AppInfoService _appInfo;
+    private readonly IDateTimeProvider _clock;
     private readonly ILogger<ResponseHeadersResultFilter> _logger;
 
-    public ResponseHeadersResultFilter(IConfiguration config, ILogger<ResponseHeadersResultFilter> logger)
+    public ResponseHeadersResultFilter(
+        AppInfoService appInfo,
+        IDateTimeProvider clock,
+        ILogger<ResponseHeadersResultFilter> logger)
     {
-        _config = config;
+        _appInfo = appInfo;
+        _clock = clock;
         _logger = logger;
     }
 
@@ -21,10 +27,11 @@ public sealed class ResponseHeadersResultFilter : IAsyncResultFilter, IOrderedFi
     {
         _logger.LogInformation("ResF BEFORE (Order={Order})", Order);
 
-        var version = _config["App:Version"] ?? "dev";
         var correlationId = context.HttpContext.TraceIdentifier;
 
-        context.HttpContext.Response.Headers["X-App-Version"] = version;
+        context.HttpContext.Response.Headers["X-App-Version"] = _appInfo.Version;
+        context.HttpContext.Response.Headers["X-App-BuildDateUtc"] = _appInfo.BuildDateUtc;
+        context.HttpContext.Response.Headers["X-Server-Utc"] = _clock.UtcNow.ToString("O");
         context.HttpContext.Response.Headers["X-Correlation-Id"] = correlationId;
 
         context.HttpContext.Response.OnStarting(() =>

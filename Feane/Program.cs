@@ -44,7 +44,15 @@ builder.Services
     .AddEntityFrameworkStores<AppIdentityDbContext>()
     .AddDefaultTokenProviders();
 
-// MVC + Filters
+// options + services
+builder.Services.Configure<AppInfoOptions>(builder.Configuration.GetSection("App"));
+builder.Services.AddSingleton<AppInfoService>();
+
+builder.Services.AddScoped<IAuditService, AuditService>();
+
+builder.Services.AddTransient<IDateTimeProvider, SystemDateTimeProvider>();
+
+// filters (через DI)
 builder.Services.AddScoped<RequestTimingResourceFilter>();
 builder.Services.AddScoped<AuditActionFilter>();
 builder.Services.AddScoped<ResponseHeadersResultFilter>();
