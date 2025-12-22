@@ -14,7 +14,13 @@ var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .WriteTo.Console()
-    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.File(
+                "Logs/log-.txt",
+                rollingInterval: RollingInterval.Day,
+                outputTemplate:
+                "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj} " +
+                "(CorrelationId={CorrelationId}, UserName={UserName}, RequestPath={RequestPath}){NewLine}{Exception}")
+
     .Enrich.FromLogContext()
     .CreateLogger();
 
@@ -52,6 +58,7 @@ var app = builder.Build();
 // =====================
 
 app.UseMiddleware<CorrelationIdMiddleware>();
+app.UseMiddleware<RequestLoggingMiddleware>();
 
 // (позже сюда добавим: CorrelationIdMiddleware, RequestLoggingMiddleware, ProblemDetails и т.д.)
 
@@ -61,7 +68,15 @@ if (!app.Environment.IsDevelopment())
 }
 
 // Serilog request logging (все входящие запросы)
-app.UseSerilogRequestLogging();
+app.UseSerilogRequestLogging(options =>
+{
+    options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+    {
+        diagnosticContext.Set("CorrelationId", httpContext.TraceIdentifier);
+        diagnosticContext.Set("UserName", httpContext.User?.Identity?.Name ?? "anonymous");
+        diagnosticContext.Set("RequestPath", httpContext.Request.Path.Value ?? "");
+    };
+});
 
 // Localization (culture cookie)
 var supportedCultures = new[]
