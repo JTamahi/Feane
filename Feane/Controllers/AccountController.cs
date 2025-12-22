@@ -1,7 +1,8 @@
+using System;
+using Feane.Models.Account;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace Feane.Controllers
 {
@@ -22,36 +23,34 @@ namespace Feane.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login(string? returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            return View(new LoginViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(string username, string password, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
         {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                ModelState.AddModelError("", "Username and password are required");
-                return View();
-            }
+            ViewData["ReturnUrl"] = returnUrl;
+
+            if (!ModelState.IsValid)
+                return View(model);
 
             var result = await _signInManager.PasswordSignInAsync(
-                username,
-                password,
-                isPersistent: true,
+                model.UserName,
+                model.Password,
+                isPersistent: model.RememberMe,
                 lockoutOnFailure: false);
 
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("", "Invalid login or password");
-                return View();
+                return View(model);
             }
 
-            // Устанавливаем cookie с именем пользователя
-            Response.Cookies.Append("FeaneUser", username, new CookieOptions
+            Response.Cookies.Append("FeaneUser", model.UserName, new CookieOptions
             {
                 HttpOnly = true,
                 Expires = DateTimeOffset.UtcNow.AddHours(1)
@@ -63,47 +62,12 @@ namespace Feane.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-        public async Task<IActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-
-            // Удаляем cookie
-            Response.Cookies.Delete("FeaneUser");
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        [HttpGet]
-        public IActionResult Register(string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(string email, string password, string returnUrl = null)
+        public async Task<IActionResult> Logout(string? returnUrl = null)
         {
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-            {
-                ModelState.AddModelError("", "Email and password are required");
-                return View();
-            }
-
-            var user = new AppUser { UserName = email, Email = email };
-            var result = await _userManager.CreateAsync(user, password);
-
-            if (!result.Succeeded)
-            {
-                foreach (var error in result.Errors)
-                    ModelState.AddModelError("", error.Description);
-
-                return View();
-            }
-
-            // Автоматический вход после регистрации
-            await _signInManager.SignInAsync(user, isPersistent: false);
+            await _signInManager.SignOutAsync();
+            Response.Cookies.Delete("FeaneUser");
 
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                 return LocalRedirect(returnUrl);
@@ -111,5 +75,44 @@ namespace Feane.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        public IActionResult Register(string? returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View(new RegisterViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = new AppUser
+            {
+                UserName = model.UserName,
+                Email = model.Email
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError("", error.Description);
+
+                return View(model);
+            }
+
+            await _signInManager.SignInAsync(user, isPersistent: false);
+
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                return LocalRedirect(returnUrl);
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
