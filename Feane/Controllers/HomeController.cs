@@ -1,6 +1,7 @@
-using System.Diagnostics;
 using Feane.Models;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Feane.Controllers
 {
@@ -26,7 +27,21 @@ namespace Feane.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var feature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+
+            // логируем детально (в логи можно exception)
+            _logger.LogError(feature?.Error, "Unhandled exception on path {Path}", feature?.Path);
+
+            return View(new ErrorViewModel
+            {
+                RequestId = HttpContext.TraceIdentifier
+            });
+        }
+
+        [HttpGet]
+        public IActionResult Throw()
+        {
+            throw new Exception("Test MVC exception");
         }
     }
 }

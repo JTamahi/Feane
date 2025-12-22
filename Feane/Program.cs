@@ -1,6 +1,7 @@
 using System.Globalization;
 using Feane.Middleware;
 using Feane.Models;
+using Feane.Filters;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,24 @@ builder.Services.AddControllersWithViews()
     .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
 
+
+builder.Services.AddScoped<AuditActionFilter>();
+
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.AddService<AuditActionFilter>();
+});
+
+
+builder.Services.AddProblemDetails(options =>
+{
+    options.CustomizeProblemDetails = ctx =>
+    {
+        ctx.ProblemDetails.Extensions["correlationId"] = ctx.HttpContext.TraceIdentifier;
+    };
+});
+
+
 // =====================
 // 3) Build app
 // =====================
@@ -57,20 +76,13 @@ var app = builder.Build();
 // 4) Middleware pipeline
 // =====================
 
+// 1) Сначала correlationId и твой request-лог
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseMiddleware<RequestLoggingMiddleware>();
 
-// (позже сюда добавим: CorrelationIdMiddleware, RequestLoggingMiddleware, ProblemDetails и т.д.)
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
-
-// Serilog request logging (все входящие запросы)
+// 2) Потом Serilog request logging (чтобы логировал и ошибки тоже)
 app.UseSerilogRequestLogging(options =>
 {
-    // важно: добавляем свойства прямо в событие "Request finished"
     options.IncludeQueryInRequestPath = true;
 
     options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
@@ -80,14 +92,48 @@ app.UseSerilogRequestLogging(options =>
         diagnosticContext.Set("RequestPath", httpContext.Request.Path.Value ?? "");
     };
 
-    // чтобы в тексте "Request finished..." сразу было видно CorrelationId
     options.MessageTemplate =
         "Request finished {RequestMethod} {RequestPath} -> {StatusCode} in {Elapsed:0.0000} ms " +
         "(CorrelationId={CorrelationId}, UserName={UserName})";
 });
 
+// 3) Потом глобальная обработка ошибок (HTML для сайта, JSON для /api)
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        var path = context.Request.Path.Value ?? "";
 
-// Localization (culture cookie)
+        if (path.StartsWith("/api", StringComparison.OrdinalIgnoreCase))
+        {
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+            var pd = new Microsoft.AspNetCore.Mvc.ProblemDetails
+            {
+                Title = "Unhandled server error",
+                Status = StatusCodes.Status500InternalServerError,
+                Detail = "An unexpected error occurred.",
+                Instance = $"{context.Request.Method} {context.Request.Path}"
+            };
+
+            pd.Extensions["correlationId"] = context.TraceIdentifier;
+
+            await context.Response.WriteAsJsonAsync(pd);
+            return;
+        }
+
+        context.Response.Redirect("/Home/Error");
+    });
+});
+
+// ВАЖНО: чтобы в Development показывалась твоя Error-страница,
+// ВРЕМЕННО закомментируй DeveloperExceptionPage
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseDeveloperExceptionPage();
+// }
+
+// 4) Дальше обычный pipeline
 var supportedCultures = new[]
 {
     new CultureInfo("en"),
