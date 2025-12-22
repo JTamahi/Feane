@@ -18,19 +18,36 @@
 	<data name="Filter_Fries">
 		<value>Fries</value>
 	</data>
+	
 	<data name="Dish_DeliciousPizza">
 		<value>Delicious Pizza</value>
 	</data>
+	<data name="Dish_PizzaDescription" xml:space="preserve"><value>Pizza is always a good idea! And ours is even more so. We cook quickly and eat with pleasure. Order now!</value></data>
+	
 	<data name="Dish_DeliciousBurger">
 		<value>Delicious Burger</value>
 	</data>
+	<data name="Dish_BurgerDescription" xml:space="preserve"><value>It's good</value></data>
+	
 	<data name="Dish_DeliciousPasta">
 		<value>Delicious Pasta</value>
 	</data>
+	<data name="Dish_PastaDescription" xml:space="preserve"><value>It's good</value></data>
+
+	<data name="Dish_FrenchFries">
+		<value>Delicious French Fries</value>
+	</data>
+	<data name="Dish_FriesDescription" xml:space="preserve"><value>It's good</value></data>
+
+	<data name="Dish_TastyBurger">
+		<value>Delicious Tasty Burger</value>
+	</data>
+	<data name="Dish_BurgerDescription" xml:space="preserve"><value>It's good</value></data>
+
 	<data name="Dish_LongText">
 		<value>Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque</value>
 	</data>
 	<data name="ViewMore">
 		<value>View More</value>
-	</data>
+	</data> 
 </root>

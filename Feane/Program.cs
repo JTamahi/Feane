@@ -36,7 +36,11 @@ builder.Services.AddLocalization(options => options.ResourcesPath = "Resources")
 
 // EF Core
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));   
 
 // Identity (AuthN/AuthZ)
 builder.Services
@@ -52,7 +56,7 @@ builder.Services.AddScoped<IAuditService, AuditService>();
 
 builder.Services.AddTransient<IDateTimeProvider, SystemDateTimeProvider>();
 
-// filters (через DI)
+// filters (Г·ГҐГ°ГҐГ§ DI)
 builder.Services.AddScoped<RequestTimingResourceFilter>();
 builder.Services.AddScoped<AuditActionFilter>();
 builder.Services.AddScoped<ResponseHeadersResultFilter>();
@@ -82,15 +86,16 @@ builder.Services.AddProblemDetails(options =>
 // =====================
 var app = builder.Build();
 
+
 // =====================
 // 4) Middleware pipeline
 // =====================
 
-// 1) Сначала correlationId и твой request-лог
+// 1) Г‘Г­Г Г·Г Г«Г  correlationId ГЁ ГІГўГ®Г© request-Г«Г®ГЈ
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseMiddleware<RequestLoggingMiddleware>();
 
-// 2) Потом Serilog request logging (чтобы логировал и ошибки тоже)
+// 2) ГЏГ®ГІГ®Г¬ Serilog request logging (Г·ГІГ®ГЎГ» Г«Г®ГЈГЁГ°Г®ГўГ Г« ГЁ Г®ГёГЁГЎГЄГЁ ГІГ®Г¦ГҐ)
 app.UseSerilogRequestLogging(options =>
 {
     options.IncludeQueryInRequestPath = true;
@@ -107,7 +112,7 @@ app.UseSerilogRequestLogging(options =>
         "(CorrelationId={CorrelationId}, UserName={UserName})";
 });
 
-// 3) Потом глобальная обработка ошибок (HTML для сайта, JSON для /api)
+// 3) ГЏГ®ГІГ®Г¬ ГЈГ«Г®ГЎГ Г«ГјГ­Г Гї Г®ГЎГ°Г ГЎГ®ГІГЄГ  Г®ГёГЁГЎГ®ГЄ (HTML Г¤Г«Гї Г±Г Г©ГІГ , JSON Г¤Г«Гї /api)
 app.UseExceptionHandler(errorApp =>
 {
     errorApp.Run(async context =>
@@ -136,14 +141,24 @@ app.UseExceptionHandler(errorApp =>
     });
 });
 
-// ВАЖНО: чтобы в Development показывалась твоя Error-страница,
-// ВРЕМЕННО закомментируй DeveloperExceptionPage
+// Г‚ГЂГ†ГЌГЋ: Г·ГІГ®ГЎГ» Гў Development ГЇГ®ГЄГ Г§Г»ГўГ Г«Г Г±Гј ГІГўГ®Гї Error-Г±ГІГ°Г Г­ГЁГ¶Г ,
+// Г‚ГђГ…ГЊГ…ГЌГЌГЋ Г§Г ГЄГ®Г¬Г¬ГҐГ­ГІГЁГ°ГіГ© DeveloperExceptionPage
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
 
-// 4) Дальше обычный pipeline
+// 4) Г„Г Г«ГјГёГҐ Г®ГЎГ»Г·Г­Г»Г© pipeline
+
+// ГЊГЁГЈГ°Г Г¶ГЁГЁ ГЁ ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЎГ Г§Г»
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate(); // Г±Г®Г§Г¤Г Г±ГІ ГЃГ„ ГЁ Г§Г ГЇГ®Г«Г­ГЁГІ HasData
+}
+
+// Configure supported cultures
+
 var supportedCultures = new[]
 {
     new CultureInfo("en"),

@@ -18,14 +18,29 @@
 	<data name="Filter_Fries">
 		<value>Картошка</value>
 	</data>
+	
 	<data name="Dish_DeliciousPizza">
 		<value>Вкусная пицца</value>
 	</data>
+	<data name="Dish_PizzaDescription" xml:space="preserve"><value>Пицца всегда хорошая идея! Наша ещё лучше. Готовим быстро — едим с удовольствием. Заказывайте!</value></data>
+
 	<data name="Dish_DeliciousBurger">
 		<value>Вкусный бургер</value>
 	</data>
+	<data name="Dish_BurgerDescription" xml:space="preserve"><value>Это вкусно</value></data>
+
 	<data name="Dish_DeliciousPasta">
 		<value>Вкусная паста</value>
+	</data>
+	<data name="Dish_PastaDescription" xml:space="preserve"><value>Это вкусно</value></data>
+
+	<data name="Dish_FrenchFries">
+		<value>Вкусная картошка</value>
+	</data>
+	<data name="Dish_FriesDescription" xml:space="preserve"><value>Это вкусно</value></data>
+
+	<data name="Dish_TastyBurger">
+		<value>Вкусный мощный бургер</value>
 	</data>
 	<data name="Dish_LongText">
 		<value>Текст описания блюда (пример): Veniam debitis quaerat officiis ...</value>
