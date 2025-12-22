@@ -70,13 +70,22 @@ if (!app.Environment.IsDevelopment())
 // Serilog request logging (все входящие запросы)
 app.UseSerilogRequestLogging(options =>
 {
+    // важно: добавляем свойства прямо в событие "Request finished"
+    options.IncludeQueryInRequestPath = true;
+
     options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
     {
         diagnosticContext.Set("CorrelationId", httpContext.TraceIdentifier);
         diagnosticContext.Set("UserName", httpContext.User?.Identity?.Name ?? "anonymous");
         diagnosticContext.Set("RequestPath", httpContext.Request.Path.Value ?? "");
     };
+
+    // чтобы в тексте "Request finished..." сразу было видно CorrelationId
+    options.MessageTemplate =
+        "Request finished {RequestMethod} {RequestPath} -> {StatusCode} in {Elapsed:0.0000} ms " +
+        "(CorrelationId={CorrelationId}, UserName={UserName})";
 });
+
 
 // Localization (culture cookie)
 var supportedCultures = new[]
