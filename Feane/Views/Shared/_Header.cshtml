@@ -4,6 +4,7 @@
 
 @{
     var userCookie = Context.Request.Cookies["FeaneUser"];
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
 }
 
 @functions {
@@ -32,48 +33,51 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <span>
-                    Feane
-                </span>
+                <span>Feane</span>
             </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class=""> </span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item @(IsActive("Home","Index"))">
+                    <li class="nav-item @(IsActive("Home", "Index"))">
                         <a class="nav-link" href="@Url.Action("Index", "Home")">@Localizer["Nav_Home"]</a>
                     </li>
-                    <li class="nav-item @(IsActive("Menu","Menu"))">
+                    <li class="nav-item @(IsActive("Menu", "Menu"))">
                         <a class="nav-link" href="@Url.Action("Menu", "Menu")">@Localizer["Nav_Menu"]</a>
                     </li>
-                    <li class="nav-item @(IsActive("About","About"))">
+                    <li class="nav-item @(IsActive("About", "About"))">
                         <a class="nav-link" href="@Url.Action("About", "About")">@Localizer["Nav_About"]</a>
                     </li>
-                    <li class="nav-item @(IsActive("Book","Book"))">
+                    <li class="nav-item @(IsActive("Book", "Book"))">
                         <a class="nav-link" href="@Url.Action("Book", "Book")">@Localizer["Nav_BookTable"]</a>
                     </li>
                 </ul>
+
                 <div class="user_option">
                     @if (!string.IsNullOrEmpty(userCookie))
                     {
-                        <a href="@Url.Action("Logout", "Account")" class="user_link">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <span style="margin-left:6px;">@userCookie | LogOut</span>
-                        </a>
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="user_link btn btn-link p-0">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span style="margin-left:6px;">@userCookie | LogOut</span>
+                            </button>
+                        </form>
                     }
                     else
                     {
-                        <a href="@Url.Action("Login", "Account", new { returnUrl = Context.Request.Path + Context.Request.QueryString })" class="user_link">
+                        <a href="@Url.Action("Login", "Account", new { returnUrl })" class="user_link">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
                     }
 
                     <!-- language switch buttons -->
-                    <a class="btn btn-link language-link" href="@Url.Action("SetLanguage", "Culture", new { culture = "en", returnUrl = Context.Request.Path + Context.Request.QueryString })">EN</a>
-                    <a class="btn btn-link language-link" href="@Url.Action("SetLanguage", "Culture", new { culture = "ru", returnUrl = Context.Request.Path + Context.Request.QueryString })">RU</a>
+                    <a class="btn btn-link language-link" href="@Url.Action("SetLanguage", "Culture", new { culture = "en", returnUrl })">EN</a>
+                    <a class="btn btn-link language-link" href="@Url.Action("SetLanguage", "Culture", new { culture = "ru", returnUrl })">RU</a>
                 </div>
             </div>
         </nav>
