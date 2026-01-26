@@ -1,0 +1,70 @@
+@page
+@model Feane.Pages.Book.BookModelPage
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<section class="sub_page">
+    <div class="hero_area">
+        <div class="bg-box">
+            <img src="@(Url.Content("~/images/hero-bg.jpg"))" alt="">
+        </div>
+        @* header *@
+        @await Html.PartialAsync("_Header")
+    </div>
+
+    <section class="book_section layout_padding">
+        <div class="container">
+            <div class="heading_container">
+                <h2>@Localizer["Book_BookATable"]</h2>
+            </div>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">@TempData["Success"]</div>
+            }
+
+            <form method="post" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <input asp-for="Booking.Name" class="form-control" placeholder="@Localizer["Placeholder_YourName"]" />
+                    <span asp-validation-for="Booking.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Booking.Phone" class="form-control" placeholder="@Localizer["Placeholder_PhoneNumber"]" />
+                    <span asp-validation-for="Booking.Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Booking.Email" class="form-control" placeholder="@Localizer["Placeholder_YourEmail"]" />
+                    <span asp-validation-for="Booking.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <select asp-for="Booking.Persons" class="form-control nice-select wide">
+                        <option value="">@Localizer["Placeholder_HowManyPersons"]</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <span asp-validation-for="Booking.Persons" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Booking.Date" type="date" class="form-control" />
+                    <span asp-validation-for="Booking.Date" class="text-danger"></span>
+                </div>
+
+                <div class="btn_box">
+                    <button type="submit" class="btn btn-primary">@Localizer["Book_BookNow"]</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
